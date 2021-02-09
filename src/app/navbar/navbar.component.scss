@@ -1,0 +1,25 @@
+@import '../../styles/variables';
+
+.menu__row {
+    flex-wrap: wrap;
+    list-style-type: none;
+}
+
+.menu__list {
+    padding: 1rem;
+    transition: background-color 0.5s ease;
+    background-color: $primary-color;
+    &:hover {
+        background-color: $primary-light-color;
+    }
+}
+
+.menu {
+    background-color: $primary-color;
+}
+
+.menu__link {
+    font-weight: bold;
+    color: $light-text-color;
+    text-transform: uppercase;
+}

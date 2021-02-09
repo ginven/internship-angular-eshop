@@ -1,0 +1,11 @@
+.form--edit {
+    width: 100%
+}
+
+.btn-delete {
+    background-color: mistyrose;
+    border: 1px solid indianred;
+    &:hover {
+        background-color: pink;
+    }
+}

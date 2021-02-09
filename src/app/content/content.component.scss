@@ -1,0 +1,6 @@
+@import '../../styles/placeholders';
+
+.main {
+    padding-bottom: 80px;
+    @extend %flex-col;
+}

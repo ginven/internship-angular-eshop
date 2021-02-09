@@ -1,0 +1,32 @@
+@import '../../styles/placeholders';
+@import '../../styles/variables';
+
+.main__products {
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap
+}
+
+.main__product {
+    @extend %flex-col;
+    margin: 10px;
+}
+
+@media only screen and (min-width: 768px) {
+    .main__product {
+        flex: 1 1 23%;
+    }
+}
+
+.product__price {
+    color: $primary-color;
+}
+
+.main__new-item {
+    text-align: center;
+}
+
+.product__image {
+    max-width: 400px;
+    width: 100%;
+}

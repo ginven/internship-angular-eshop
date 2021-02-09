@@ -1,0 +1,14 @@
+.main__carousel {
+    width: 100vw;
+    img {
+        max-width: 100%;
+        object-fit: contain;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .main__carousel {
+        width: 70vw;
+        margin: 0 auto;
+    }
+  }

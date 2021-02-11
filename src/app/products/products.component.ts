@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Product } from '../../product';
-import { PRODUCTS } from '../../mock-products';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { Product } from './../models/product';
+import { AppState } from './../app.state';
+
+import { ProductsService } from '../products.service';
 
 @Component({
   selector: 'app-products',
@@ -9,10 +13,16 @@ import { PRODUCTS } from '../../mock-products';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-  products = PRODUCTS;
-  constructor() { }
+  products:any
+  constructor(private productsService: ProductsService) { }
 
-  ngOnInit(): void {
+ ngOnInit() {
+   this.getProducts();
+  }
+
+  getProducts() {
+    this.productsService.getProducts()
+    .subscribe(products => this.products = products);
   }
 
 }

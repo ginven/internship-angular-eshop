@@ -1,17 +1,23 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { NgrxFormsModule } from 'ngrx-forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { HeaderComponent } from './common/header/header.component';
+import { FooterComponent } from './common/footer/footer.component';
+import { NavbarComponent } from './common/navbar/navbar.component';
 import { ContentComponent } from './content/content.component';
-import { CarouselComponent } from './carousel/carousel.component';
-import { SiteDescComponent } from './site-desc/site-desc.component';
+import { CarouselComponent } from './common/carousel/carousel.component';
+import { SiteDescComponent } from './common/site-desc/site-desc.component';
 import { ProductsComponent } from './products/products.component';
 import { AddFormComponent } from './add-form/add-form.component';
 import { EditItemFormComponent } from './edit-item-form/edit-item-form.component';
+
+import { productReducer } from './product.reducer';
 
 @NgModule({
   declarations: [
@@ -28,7 +34,11 @@ import { EditItemFormComponent } from './edit-item-form/edit-item-form.component
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    StoreModule.forRoot({form: productReducer}),
+    NgrxFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

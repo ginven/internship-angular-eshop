@@ -1,6 +1,6 @@
 <section class="main__products d-flex flex-row">
    <article class="main__product" *ngFor="let product of products">
-    <a href="edit-item.html" >
+    <a routerLink="/edit-item/{{product.id}}" >
         <figure>
             <img class="product__image" src="{{product.image}}"
                 alt="{{product.title}}">
@@ -11,5 +11,5 @@
    </article> 
 </section>
 <section class="main__new-item">
-    <a class="btn btn-primary btn-lg"  href="/add-new-item.html" role="button">Add new item</a>
+    <a class="btn btn-primary btn-lg"  href="/add-item" role="button">Add new item</a>
 </section>

@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { FormGroupState } from 'ngrx-forms';
 import { Observable } from 'rxjs';
 
-import * as ProductsActions from './../actions/product.actions';
+import * as ProductActions from './../actions/product.actions';
 import { AddFormValue, AppState } from '../product.reducer';
 import { ProductsService } from '../products.service';
 
@@ -13,16 +13,17 @@ import { ProductsService } from '../products.service';
   templateUrl: './add-form.component.html',
   styleUrls: ['./add-form.component.scss']
 })
-// export class AddFormComponent implements OnInit {
-//   formState: Observable<FormGroupState<AddFormValue>>;
-export class AddFormComponent {
+export class AddFormComponent implements OnInit {
   formState$: Observable<FormGroupState<AddFormValue>>;
 
-  constructor( private productsService: ProductsService, private store: Store<AppState>) {
+  constructor( 
+    private productsService: ProductsService, 
+    private store: Store<AppState>) {
     this.formState$ = store.select(s => s.addForm);
    }
 
   addProduct(){
+    this.store.dispatch(ProductActions.AddProduct());
   }
 
   ngOnInit(): void {

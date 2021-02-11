@@ -1,20 +1,22 @@
-import { Action } from '@ngrx/store';
+import { createAction, Action } from '@ngrx/store';
 
 import { Product } from '../models/product';
 
-export const ADD_PRODUCT = '[Product] Add';
-export const DELETE_PRODUCT = '[Product] Delete';
+export const AddProduct = createAction('[Counter Component] submit');
 
-export class AddProduct implements Action {
-    readonly type = ADD_PRODUCT;
+// export const ADD_PRODUCT = '[Product] Add';
+// export const DELETE_PRODUCT = '[Product] Delete';
 
-    constructor(public payload: Product) {}
-}
+// export class AddProduct implements Action {
+//     readonly type = ADD_PRODUCT;
 
-export class DeleteProduct implements Action {
-    readonly type = DELETE_PRODUCT;
+//     constructor(public payload: Product[]) {}
+// }
 
-    constructor(public payload: number) {}
-}
+// export class DeleteProduct implements Action {
+//     readonly type = DELETE_PRODUCT;
 
-export type Actions = AddProduct | DeleteProduct
+//     constructor(public payload: number) {}
+// }
+
+// export type Actions = AddProduct | DeleteProduct

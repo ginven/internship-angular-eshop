@@ -1,5 +1,6 @@
-import { Action } from '@ngrx/store';
+import { Action, createReducer, on } from '@ngrx/store';
 import { FormGroupState, createFormGroupState, formGroupReducer } from 'ngrx-forms';
+import { onNgrxForms } from 'ngrx-forms';
 
 import { Product } from './models/product';
 import * as ProductActions from './actions/product.actions';
@@ -24,15 +25,20 @@ export interface AppState {
     addForm: initialFormState
   };
 
-export function productReducer(state = initialState, action: Action): AppState {
-    const addForm = formGroupReducer(state.addForm, action)
-    if (addForm !== state.addForm) {
-        state = { ...state, addForm };
-      }
+  export const appReducer = createReducer(
+    initialState,
+    onNgrxForms()
+  );
 
-      return state;
+// export function productReducer(state = initialState, action: Action): AppState {
+//     const addForm = formGroupReducer(state.addForm, action)
+//     if (addForm !== state.addForm) {
+//         state = { ...state, addForm };
+//       }
 
-}
+//       return state;
+
+// }
 
 
 // import { Action } from "@ngrx/store";

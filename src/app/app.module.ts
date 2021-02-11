@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { NgrxFormsModule } from 'ngrx-forms';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,7 +19,10 @@ import { ProductsComponent } from './products/products.component';
 import { AddFormComponent } from './add-form/add-form.component';
 import { EditItemFormComponent } from './edit-item-form/edit-item-form.component';
 
-import { appReducer } from './product.reducer';
+import { environment } from 'src/environments/environment';
+import { appReducer } from './_store';
+import { ProductEffects } from './products.effects';
+
 
 @NgModule({
   declarations: [
@@ -37,8 +42,10 @@ import { appReducer } from './product.reducer';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    StoreModule.forRoot({form: appReducer}),
-    NgrxFormsModule
+    StoreModule.forRoot(appReducer),
+    !environment.production ? StoreDevtoolsModule.instrument():[],
+    NgrxFormsModule,
+    EffectsModule.forRoot([ProductEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

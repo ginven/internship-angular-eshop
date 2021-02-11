@@ -1,5 +1,5 @@
 <section class="main__products d-flex flex-row">
-   <article class="main__product" *ngFor="let product of products">
+   <article class="main__product" *ngFor="let product of products$ | async">
     <a routerLink="/edit-item/{{product.id}}" >
         <figure>
             <img class="product__image" src="{{product.image}}"

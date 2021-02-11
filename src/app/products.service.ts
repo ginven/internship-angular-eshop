@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {  Store } from '@ngrx/store';
 
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
-import { Product } from './models/product';
+import { Products } from './models/product';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
-  constructor(private http: HttpClient) { }
+  products: Observable<Products[]>
+
+  constructor(private http: HttpClient, private store: Store) { }
 
   private database = 'http://localhost:3000/items';
 
@@ -19,8 +22,8 @@ export class ProductsService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  getProducts(): Observable<{}> {
-    return this.http.get(this.database)
+  getProducts(): Observable<Products[]> {
+    return this.http.get<Products[]>(this.database);
   }
 
   addProduct(product): Observable<{}> {

@@ -1,17 +1,26 @@
-import { createAction, Action } from '@ngrx/store';
+import { Title } from '@angular/platform-browser';
+import { createAction, Action, props } from '@ngrx/store';
 
-import { Product } from '../models/product';
+import { Products } from '../models/product';
 
-export const AddProduct = createAction('[Counter Component] submit');
+// export const ShowProducts = createAction('[Products Load] Load Products', 
+// props<{ products: Products[] }>()
+// )
 
-// export const ADD_PRODUCT = '[Product] Add';
-// export const DELETE_PRODUCT = '[Product] Delete';
+export const SHOW_PRODUCTS = '[Products Load] Load Products';
+export const SHOW_PRODUCT_SUCCESS = '[Products Load] Products Load Success';
 
-// export class AddProduct implements Action {
-//     readonly type = ADD_PRODUCT;
+export class ShowProducts implements Action {
+    readonly type = SHOW_PRODUCTS;
 
-//     constructor(public payload: Product[]) {}
-// }
+    constructor(public payload: Products[]) {}
+}
+
+export class LoadProducts implements Action {
+    readonly type = SHOW_PRODUCT_SUCCESS;
+
+    constructor(public payload: Products[]) {}
+}
 
 // export class DeleteProduct implements Action {
 //     readonly type = DELETE_PRODUCT;

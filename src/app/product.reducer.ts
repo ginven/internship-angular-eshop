@@ -1,58 +1,58 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import { FormGroupState, createFormGroupState, formGroupReducer } from 'ngrx-forms';
 import { onNgrxForms } from 'ngrx-forms';
 
-import { Product } from './models/product';
 import * as ProductActions from './actions/product.actions';
-import { Title } from '@angular/platform-browser';
+
 
 export interface AddFormValue {
     title: string
   }
 
-const FORM_ID = 'WD5iFkQInzjz3Oh14T1P';
 
-const initialFormState = createFormGroupState<AddFormValue>(FORM_ID, {
-    title: 'test'
-  });
-  
+  export interface Products {
+    id: number;
+    date: string;
+    title: string;
+    image: string;
+    content: string;
+}
 
-export interface AppState {
-    addForm:  FormGroupState<AddFormValue>
-  }
+const initialFormState = createFormGroupState<AddFormValue>('products_form', {
+  title: 'test'
+});
 
-  const initialState: AppState = {
-    addForm: initialFormState
-  };
+export interface ProductsState {
+  addForm:  FormGroupState<AddFormValue>,
+  products: Products[]
+}
 
-  export const appReducer = createReducer(
-    initialState,
-    onNgrxForms()
-  );
+const initialState: ProductsState = {
+  addForm: initialFormState,
+  products: [   {
+    "id": 1,
+    "date": "2021-02-04",
+    "title": "Wok with lid",
+    "image": "https://d2rbyiw1vv51io.cloudfront.net/web/ikea4/images/897/0789733_PE764109_S4.jpg",
+    "content": "19.99"
+  },
+  {
+    "title": "4 blue mugs",
+    "image": "https://d2rbyiw1vv51io.cloudfront.net/web/ikea4/images/552/0455293_PH133702_S4.jpg",
+    "date": "2021-02-04",
+    "content": "21.99",
+    "id": 2
+  },]
+};
 
-// export function productReducer(state = initialState, action: Action): AppState {
-//     const addForm = formGroupReducer(state.addForm, action)
-//     if (addForm !== state.addForm) {
-//         state = { ...state, addForm };
-//       }
-
-//       return state;
-
-// }
-
-
-// import { Action } from "@ngrx/store";
-// import { createFormGroupState, formStateReducer } from "ngrx-forms";
-
-// export interface MyFormValue {
-//   stringValue: string;
-// }
-
-// export const initialState = createFormGroupState<MyFormValue>("FORM", {
-//   stringValue: ""
-// });
-
-// export function formReducer(state = initialState, action: Action) {
-//   return formStateReducer(state, action);
-// }
+export const productsReducer = createReducer(
+  initialState,
+  // on(ProductActions.LoadProducts, (state, action) => {
+  //   return {
+  //     ...state,
+  //     products
+  //   }
+  // }),
+  onNgrxForms()
+);
 

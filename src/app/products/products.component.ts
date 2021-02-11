@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
-import { Product } from './../models/product';
-import { AppState } from './../app.state';
-
+import { tap } from 'rxjs/operators';
+import { Store, select } from '@ngrx/store';
+import { Products } from './../models/product';
 import { ProductsService } from '../products.service';
+
+import * as ProductActions from '../actions/product.actions';
+import { getProductList, AppState } from './product.selector';
+import { ProductsState } from '../product.reducer';
+
 
 @Component({
   selector: 'app-products',
@@ -13,16 +17,29 @@ import { ProductsService } from '../products.service';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-  products:any
-  constructor(private productsService: ProductsService) { }
+  // products$: Observable<Products[]> = this.store.select(state => state.products);
+  products$: Observable<Products[]> 
+
+  constructor(
+    private productsService: ProductsService,
+    private store: Store<AppState>) {
+
+}
+
 
  ngOnInit() {
-   this.getProducts();
+
+      this.products$ = this.store.pipe(select(getProductList))
+      console.log(this.products$)
+  //  this.getProducts();
+  //  this.store.dispatch({ type: '[Products Load] Load Products'})
+  //  this.store.dispatch({ty}}))
   }
 
-  getProducts() {
-    this.productsService.getProducts()
-    .subscribe(products => this.products = products);
-  }
+  // getProducts() {
+    // this.productsService.getProducts()
+    // this.store.dispatch({ type: '[Products Load] Load Products'})
+    // .subscribe(products => this.products = products);
+  // }
 
 }

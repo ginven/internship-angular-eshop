@@ -2,57 +2,30 @@ import { Action, createReducer, on } from '@ngrx/store';
 import { FormGroupState, createFormGroupState, formGroupReducer } from 'ngrx-forms';
 import { onNgrxForms } from 'ngrx-forms';
 
-import { Product } from './models/product';
-import * as ProductActions from './actions/product.actions';
-import { Title } from '@angular/platform-browser';
-
 export interface AddFormValue {
     title: string
   }
 
-const FORM_ID = 'WD5iFkQInzjz3Oh14T1P';
+export interface Products {
+  title: string
+}
 
-const initialFormState = createFormGroupState<AddFormValue>(FORM_ID, {
+const initialFormState = createFormGroupState<AddFormValue>('products_form', {
     title: 'test'
   });
-  
 
-export interface AppState {
-    addForm:  FormGroupState<AddFormValue>
+
+export interface ProductsState {
+    addForm:  FormGroupState<AddFormValue>,
+    products: Products[]
   }
 
-  const initialState: AppState = {
-    addForm: initialFormState
+  const initialState: ProductsState = {
+    addForm: initialFormState,
+    products: []
   };
 
-  export const appReducer = createReducer(
+  export const productsReducer = createReducer(
     initialState,
     onNgrxForms()
   );
-
-// export function productReducer(state = initialState, action: Action): AppState {
-//     const addForm = formGroupReducer(state.addForm, action)
-//     if (addForm !== state.addForm) {
-//         state = { ...state, addForm };
-//       }
-
-//       return state;
-
-// }
-
-
-// import { Action } from "@ngrx/store";
-// import { createFormGroupState, formStateReducer } from "ngrx-forms";
-
-// export interface MyFormValue {
-//   stringValue: string;
-// }
-
-// export const initialState = createFormGroupState<MyFormValue>("FORM", {
-//   stringValue: ""
-// });
-
-// export function formReducer(state = initialState, action: Action) {
-//   return formStateReducer(state, action);
-// }
-

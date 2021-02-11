@@ -19,7 +19,7 @@ export class ProductsService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  getProducts(): Observable<{}> {
+  getProducts(): Observable<{}> { //vietoje {} naudoti tipus. T.y. susikurtin interface su products ir nurodyti jų properčius
     return this.http.get(this.database)
   }
 

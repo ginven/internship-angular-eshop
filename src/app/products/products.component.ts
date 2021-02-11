@@ -14,7 +14,8 @@ import { ProductsService } from '../products.service';
 })
 export class ProductsComponent implements OnInit {
   products:any
-  constructor(private productsService: ProductsService) { }
+  constructor(private productsService: ProductsService,
+              private store: Store) { }
 
  ngOnInit() {
    this.getProducts();
@@ -22,7 +23,7 @@ export class ProductsComponent implements OnInit {
 
   getProducts() {
     this.productsService.getProducts()
-    .subscribe(products => this.products = products);
+    // .subscribe(products => this.store.dispatch(setProducts(products)));
   }
 
 }

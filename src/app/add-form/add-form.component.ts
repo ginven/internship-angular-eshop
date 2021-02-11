@@ -4,7 +4,7 @@ import { FormGroupState } from 'ngrx-forms';
 import { Observable } from 'rxjs';
 
 import * as ProductActions from './../actions/product.actions';
-import { AddFormValue, AppState } from '../product.reducer';
+import { AddFormValue } from '../product.reducer';
 import { ProductsService } from '../products.service';
 
 
@@ -16,10 +16,10 @@ import { ProductsService } from '../products.service';
 export class AddFormComponent implements OnInit {
   formState$: Observable<FormGroupState<AddFormValue>>;
 
-  constructor( 
-    private productsService: ProductsService, 
-    private store: Store<AppState>) {
-    this.formState$ = store.select(s => s.addForm);
+  constructor(
+    private productsService: ProductsService,
+    private store: Store) {
+    // this.formState$ = store.select(s => s.addForm);
    }
 
   addProduct(){

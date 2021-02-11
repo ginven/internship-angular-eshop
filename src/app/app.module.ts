@@ -17,7 +17,9 @@ import { ProductsComponent } from './products/products.component';
 import { AddFormComponent } from './add-form/add-form.component';
 import { EditItemFormComponent } from './edit-item-form/edit-item-form.component';
 
-import { appReducer } from './product.reducer';
+import { environment } from 'src/environments/environment';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { appReducer } from './_store';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { appReducer } from './product.reducer';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    StoreModule.forRoot({form: appReducer}),
+    StoreModule.forRoot(appReducer),
+    !environment.production ? StoreDevtoolsModule.instrument():[],
     NgrxFormsModule
   ],
   providers: [],

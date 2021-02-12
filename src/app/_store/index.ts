@@ -8,3 +8,4 @@ export interface RootState {
 export const appReducer: ActionReducerMap<RootState> = {
   products: fromProducts.productsReducer
 }
+

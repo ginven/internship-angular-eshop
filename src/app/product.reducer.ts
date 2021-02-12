@@ -47,12 +47,8 @@ const initialState: ProductsState = {
 
 export const productsReducer = createReducer(
   initialState,
-  // on(ProductActions.LoadProducts, (state, action) => {
-  //   return {
-  //     ...state,
-  //     products
-  //   }
-  // }),
+  on(ProductActions.ShowProducts, state => ({ ...state, products: state.products })),
+  on(ProductActions.LoadProducts, state => ({ ...state, products: state.products })),
   onNgrxForms()
 );
 

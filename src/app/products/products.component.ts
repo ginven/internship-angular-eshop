@@ -11,6 +11,7 @@ import { getProductList, AppState } from './product.selector';
 import { ProductsState } from '../product.reducer';
 
 
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -20,26 +21,18 @@ export class ProductsComponent implements OnInit {
   // products$: Observable<Products[]> = this.store.select(state => state.products);
   products$: Observable<Products[]> 
 
-  constructor(
-    private productsService: ProductsService,
-    private store: Store<AppState>) {
-
+constructor(private store: Store) {
+      this.products$ = this.store.pipe(select(getProductList))
 }
 
-
  ngOnInit() {
-
-      this.products$ = this.store.pipe(select(getProductList))
-      console.log(this.products$)
-  //  this.getProducts();
-  //  this.store.dispatch({ type: '[Products Load] Load Products'})
-  //  this.store.dispatch({ty}}))
+    console.log(this.products$)
+    this.getProducts();
   }
 
-  // getProducts() {
-    // this.productsService.getProducts()
-    // this.store.dispatch({ type: '[Products Load] Load Products'})
+  getProducts() {
+    this.store.dispatch(ProductActions.ShowProducts())
     // .subscribe(products => this.products = products);
-  // }
+  }
 
 }

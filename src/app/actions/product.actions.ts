@@ -3,24 +3,31 @@ import { createAction, Action, props } from '@ngrx/store';
 
 import { Products } from '../models/product';
 
+export const ShowProducts = createAction('[Products Load] Load Products')
+
+export const LoadProducts = createAction('[Products Load] Products Load Success', 
+props<{ products: Products[] }>()
+)
+
 // export const ShowProducts = createAction('[Products Load] Load Products', 
 // props<{ products: Products[] }>()
 // )
 
-export const SHOW_PRODUCTS = '[Products Load] Load Products';
-export const SHOW_PRODUCT_SUCCESS = '[Products Load] Products Load Success';
 
-export class ShowProducts implements Action {
-    readonly type = SHOW_PRODUCTS;
+// export const SHOW_PRODUCTS = '[Products Load] Load Products';
+// export const SHOW_PRODUCT_SUCCESS = '[Products Load] Products Load Success';
 
-    constructor(public payload: Products[]) {}
-}
+// export class ShowProducts implements Action {
+//     readonly type = SHOW_PRODUCTS;
 
-export class LoadProducts implements Action {
-    readonly type = SHOW_PRODUCT_SUCCESS;
+//     constructor(public payload: Products[]) {}
+// }
 
-    constructor(public payload: Products[]) {}
-}
+// export class LoadProducts implements Action {
+//     readonly type = SHOW_PRODUCT_SUCCESS;
+
+//     constructor(public payload: Products[]) {}
+// }
 
 // export class DeleteProduct implements Action {
 //     readonly type = DELETE_PRODUCT;

@@ -42,7 +42,14 @@ import { ProductEffects } from './products.effects';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    StoreModule.forRoot(appReducer),
+    StoreModule.forRoot(appReducer, {
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+        strictActionSerializability: true,
+        strictActionTypeUniqueness: true
+        }
+    }),
     !environment.production ? StoreDevtoolsModule.instrument():[],
     NgrxFormsModule,
     EffectsModule.forRoot([ProductEffects])

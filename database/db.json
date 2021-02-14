@@ -1,4 +1,18 @@
 {
+  "users": [
+    {
+      "id": 0,
+      "username": "admin",
+      "password": "admin",
+      "admin": true
+    },
+    {
+      "id": 1,
+      "username": "user",
+      "password": "user",
+      "admin": false
+    }
+  ],
   "items": [
     {
       "id": 1,
@@ -8,11 +22,12 @@
       "content": "19.99"
     },
     {
-      "title": "4 blue mugs",
+      "title": "4 blue mugss",
       "image": "https://d2rbyiw1vv51io.cloudfront.net/web/ikea4/images/552/0455293_PH133702_S4.jpg",
-      "date": "2021-02-04",
       "content": "21.99",
-      "id": 2
+      "date": "2021-02-04",
+      "id": 2,
+      "type": "[Update Product] Submit Updated Product"
     },
     {
       "id": 3,
@@ -29,11 +44,19 @@
       "content": "23.99"
     },
     {
-      "title": "Some title",
+      "title": "Some pan",
+      "date": "2021-02-14",
       "image": "https://d2rbyiw1vv51io.cloudfront.net/web/ikea4/images/128/0712832_PE729095_S4.jpg",
-      "date": "2021-02-13",
-      "content": "13.99",
+      "content": "12.99",
       "id": 5
+    },
+    {
+      "title": "Titles",
+      "image": "https://d2rbyiw1vv51io.cloudfront.net/web/ikea4/images/552/0455293_PH133702_S4.jpg",
+      "content": "15.99",
+      "date": "2021-02-15",
+      "id": 6,
+      "type": "[Update Product] Submit Updated Product"
     }
   ]
 }

@@ -12,7 +12,8 @@
             </div>
         </div>
         <div class="header__login">
-            <a class="header__login--link sprites" href="/login">Login</a>
+            <a class="header__login--link sprites" *ngIf="!isLoggedIn"  href="/login">Login</a>
+            <button (click)="logout()" *ngIf="isLoggedIn" class="btn btn-block">Logout</button>
         </div>
     </section>
 </header>

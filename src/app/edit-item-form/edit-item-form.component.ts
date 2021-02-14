@@ -1,7 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
-import { ProductsService } from '../products.service';
+
+import { Observable } from 'rxjs';
+import { Store, select } from '@ngrx/store';
+import { map, take } from 'rxjs/operators';
+import { FormGroupState } from 'ngrx-forms';
+
+import * as ProductActions from '../actions/product.actions';
+import { getProductList, getProduct, getForm } from '../state/product.selector';
+import { Products } from './../models/product';
+import { EditFormValue } from '../state/product.reducer';
 
 @Component({
   selector: 'app-edit-item-form',
@@ -9,23 +19,53 @@ import { ProductsService } from '../products.service';
   styleUrls: ['./edit-item-form.component.scss']
 })
 export class EditItemFormComponent implements OnInit {
-  product
+  product$: Observable<Products>; 
+  formState$: Observable<FormGroupState<EditFormValue>> = this.store.select(getForm);
+  id: number = +this.route.snapshot.paramMap.get('id');
+  updateForm = this.fb.group({
+    title: ['', [Validators.required, Validators.minLength(4)]],
+    image: ['', [Validators.required, Validators.minLength(10)]],
+    content: ['', [Validators.required, Validators.minLength(4)]],
+    date: ['', Validators.required]
+  });
+
   constructor(
+    private router: Router,
+    private fb: FormBuilder,
     private route: ActivatedRoute,
-    private productsService: ProductsService) { }
+    private store: Store) { 
+    }
 
   ngOnInit(): void {
-    this.getProduct()
+    this.store.dispatch(ProductActions.GetProduct({ productId: this.id }))
+    this.product$ = this.store.select(getProduct)
   }
 
-  getProduct(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.productsService.getProduct(id)
-      .subscribe(product => this.product = product);
+  deleteProduct(id:number): void {
+    if (!confirm('Are you sure you want to delete this item?')) {
+      return
+    }
+    this.store.dispatch(ProductActions.DeleteProduct({ productId: id }))
+    this.showMessage('<strong>Well done!</strong> You deleted product succesfully.', 'alert-success');
+    setTimeout(() => this.router.navigate(['/']), 2000)
+
   }
 
-  deleteProduct(id): void {
-    this.productsService.deleteProduct(id)
-    .subscribe();
+  updateProduct(): void {
+    this.updateForm.value.id = this.id;
+    this.store.dispatch(ProductActions.UpdateProduct(this.updateForm.value));
+    this.showMessage('<strong>Well done!</strong> You updated product succesfully.', 'alert-success');
+    setTimeout(() => this.router.navigate(['/']), 2000)
+  }
+
+  showMessage = (message: string, cssClass: string) => {
+    const htmlMessage = document.createElement('div');
+    const userMessageSection = document.querySelector('.main__user-message')
+    htmlMessage.innerHTML = `
+          <div class="alert alert-sm ${cssClass}" role="alert">
+          ${message}
+          </div>  
+      `
+    userMessageSection.appendChild(htmlMessage);
   }
 }

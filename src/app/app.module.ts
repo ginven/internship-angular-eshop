@@ -6,6 +6,7 @@ import { StoreModule } from '@ngrx/store';
 import { NgrxFormsModule } from 'ngrx-forms';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,7 +22,9 @@ import { EditItemFormComponent } from './edit-item-form/edit-item-form.component
 
 import { environment } from 'src/environments/environment';
 import { appReducer } from './_store';
-import { ProductEffects } from './products.effects';
+import { ProductEffects } from './state/products.effects';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 
 @NgModule({
@@ -35,7 +38,9 @@ import { ProductEffects } from './products.effects';
     SiteDescComponent,
     ProductsComponent,
     AddFormComponent,
-    EditItemFormComponent
+    EditItemFormComponent,
+    PageNotFoundComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +57,8 @@ import { ProductEffects } from './products.effects';
     }),
     !environment.production ? StoreDevtoolsModule.instrument():[],
     NgrxFormsModule,
-    EffectsModule.forRoot([ProductEffects])
+    EffectsModule.forRoot([ProductEffects]),
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

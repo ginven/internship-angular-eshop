@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../../state/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
+  isLoggedIn = localStorage.getItem('isLoggedIn');
+  constructor(public authService: AuthService, public router: Router) { }
 
   ngOnInit(): void {
+  }
+  
+  logout() {
+    // this.authService.logout();
+    localStorage.clear();
+    location.reload();
   }
 
 }

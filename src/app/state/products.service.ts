@@ -5,7 +5,7 @@ import {  Store } from '@ngrx/store';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
-import { Products } from './models/product';
+import { Products } from '../models/product';
 
 
 @Injectable({
@@ -13,6 +13,7 @@ import { Products } from './models/product';
 })
 export class ProductsService {
   products: Observable<Products[]>
+  product: Observable<Products>
 
   constructor(private http: HttpClient, private store: Store) { }
 
@@ -26,18 +27,20 @@ export class ProductsService {
     return this.http.get<Products[]>(this.database);
   }
 
-  addProduct(product): Observable<{}> {
-    return this.http.post(this.database, product, this.httpOptions);
+  addProduct(product): Observable<Products> {
+    return this.http.post<Products>(this.database, product, this.httpOptions);
   }
 
-  getProduct(id: number): Observable<{}> {
-    return this.http.get(this.database + '/' + id);
+  getProduct(id: number): Observable<Products> {
+    return this.http.get<Products>(this.database + '/' + id);
   }
 
-  deleteProduct(id: number): Observable<{}>  {
+  deleteProduct(id: number) {
     return this.http.delete((this.database + '/' + id), this.httpOptions)
   }
 
-
+  updateProduct(product) {
+    return this.http.put<Products>(this.database + '/' + product.id, product, this.httpOptions);
+  }
 
 }

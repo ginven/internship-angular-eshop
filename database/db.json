@@ -22,7 +22,7 @@
       "content": "19.99"
     },
     {
-      "title": "4 blue mugss",
+      "title": "4 blue mugs",
       "image": "https://d2rbyiw1vv51io.cloudfront.net/web/ikea4/images/552/0455293_PH133702_S4.jpg",
       "content": "21.99",
       "date": "2021-02-04",
@@ -57,6 +57,13 @@
       "date": "2021-02-15",
       "id": 6,
       "type": "[Update Product] Submit Updated Product"
+    },
+    {
+      "title": "Title",
+      "date": "2021-02-17",
+      "image": "https://d2rbyiw1vv51io.cloudfront.net/web/ikea4/images/552/0455293_PH133702_S4.jpg",
+      "content": "13.99",
+      "id": 7
     }
   ]
 }

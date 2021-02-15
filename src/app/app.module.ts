@@ -23,6 +23,7 @@ import { EditItemFormComponent } from './edit-item-form/edit-item-form.component
 import { environment } from 'src/environments/environment';
 import { appReducer } from './_store';
 import { ProductEffects } from './state/products.effects';
+import { UserEffects } from './state/auth.effects';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 
@@ -57,7 +58,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
     }),
     !environment.production ? StoreDevtoolsModule.instrument():[],
     NgrxFormsModule,
-    EffectsModule.forRoot([ProductEffects]),
+    EffectsModule.forRoot([ProductEffects, UserEffects]),
     ReactiveFormsModule
   ],
   providers: [],

@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Store  } from '@ngrx/store';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+
 import { User } from '../models/user';
-import { AuthService } from '../state/auth.service';
+import * as UserActions from '../actions/user.actions';
+import { getUserState } from '../_store';
+import { UserState } from '../auth/user.reducer';
+import { getUserStatus} from '../state/product.selector';
 
 @Component({
   selector: 'app-login-page',
@@ -15,38 +21,45 @@ export class LoginPageComponent implements OnInit {
     password: ['', [Validators.required, Validators.minLength(4)]],
   });
   user: User;
-  isLoggedIn = localStorage.getItem('isLoggedIn');
+  isLoggedIn: boolean;
+  getState: Observable<any>;
+  errorMessage: string | null;
 
   constructor(private fb: FormBuilder, 
-    public authService: AuthService,
+    private store: Store,
     public router: Router) { 
-
+      this.getState = this.store.select(getUserState);
     }
 
   ngOnInit(): void {
-  }
-
-  // login(username: string, password: string){
-  //   console.log(this.authService.login(username, password));
-  // }
-
-  async login(username: string, password: string) {
-    // this.message = 'Trying to log in ...';
-
-    this.authService.login(username, password).subscribe(() => {
-      // if (this.authService.isLoggedIn) {
-        if (localStorage.getItem('isLoggedIn')) {
-        const redirectUrl = '/';
-        this.router.navigate([redirectUrl]);
-      }
-       else {
-        console.log('Username or password is incorrect')
-       }
+    this.getState.subscribe((state) => {
+      this.errorMessage = state.errorMessage;
     });
   }
 
+  login(username: string, password: string) {
+
+    this.store.dispatch(UserActions.LoginUser({ username, password }));
+    
+    
+    // this.store.select(getUserState).subscribe((s) => {
+    //   console.log(s)
+    // })
+
+    // this.authService.login(username, password).subscribe(() => {
+    //   // if (this.authService.isLoggedIn) {
+    //     if (localStorage.getItem('isLoggedIn')) {
+    //     const redirectUrl = '/';
+    //     this.router.navigate([redirectUrl]);
+    //   }
+    //    else {
+    //     console.log('Username or password is incorrect')
+    //    }
+    // });
+  }
+
+
   logout() {
-    localStorage.clear();
-    location.reload();
+    this.store.dispatch(UserActions.UserLogout());
   }
 }

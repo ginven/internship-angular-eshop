@@ -2,7 +2,11 @@
     <h1>Login to page
     </h1>    
     <form (ngSubmit)="login(loginForm.controls['username'].value, loginForm.controls['password'].value)" [formGroup]="loginForm" novalidate class="form--edit col-sm-6 col-lg-4">
-            <div class="main__user-message"></div>
+        <div *ngIf="errorMessage">
+            <div class="alert alert-danger alert-sm" role="alert">
+              {{errorMessage}}
+            </div>
+          </div>
             <div class="form-group">
                 <label for="username">Username</label>
                 <input formControlName="username" type="text" class="form-control" placeholder="Username" name="username" id="username" required minlength="4">

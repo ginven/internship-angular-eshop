@@ -3,6 +3,7 @@ import { FormGroupState, createFormGroupState,  updateGroup, onNgrxForms, valida
 import { required } from 'ngrx-forms/validation';
 
 import * as ProductActions from '../actions/product.actions';
+import * as UserActions from '../actions/user.actions';
 import { Products } from '../models/product'
 
 
@@ -21,12 +22,12 @@ const initialFormState = createFormGroupState<EditFormValue>('products_form', {
   content: ''
 });
 
-const validateMyForm = updateGroup<EditFormValue>({
-  title: validate(required),
-  date: validate(required),
-  image: validate(required),
-  content: validate(required)
-})
+// const validateMyForm = updateGroup<EditFormValue>({
+//   title: validate(required),
+//   date: validate(required),
+//   image: validate(required),
+//   content: validate(required)
+// })
 
 export interface ProductsState {
   editForm: FormGroupState<EditFormValue>,
@@ -67,7 +68,5 @@ export const productsReducer = createReducer(
   on(ProductActions.GetProduct, (state, props) => ({ ...state, product: state.product })), 
   on(ProductActions.LoadOneProduct, (state, props) => ({ ...state, product: props.product })), 
   onNgrxForms(),
-  on(ProductActions.AddProduct, (state, { submittedValue }) => ({ ...state, submittedValue })),
+  on(ProductActions.AddProduct, (state, { submittedValue }) => ({ ...state, submittedValue }))
 );
-
-

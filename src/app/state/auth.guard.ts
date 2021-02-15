@@ -8,6 +8,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
+  isLoggedIn: boolean;
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(
@@ -18,7 +19,7 @@ export class AuthGuard implements CanActivate {
   }
 
   checkLogin(): true|UrlTree {
-    if (localStorage.getItem('isLoggedIn')) { return true; }
+    if (localStorage.getItem('token')) { return true; }
     
     return this.router.parseUrl('/');
   }

@@ -26,7 +26,8 @@ export interface UserState {
         ...state, 
         user: {
             username: props.user.username, 
-            id: props.user.id
+            id: props.user.id,
+            admin: props.user.admin
         }, 
         isLoggedIn: true, 
         errorMessage: null

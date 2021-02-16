@@ -39,8 +39,9 @@ export class ProductsService {
     return this.http.delete((this.database + '/' + id), this.httpOptions)
   }
 
-  updateProduct(product) {
-    return this.http.put<Products>(this.database + '/' + product.id, product, this.httpOptions);
+  updateProduct(product: any) {
+    const updatedProd = {image: product.image, title: product.title, content: product.content, date: product.date}
+    return this.http.put<Products>(this.database + '/' + product.id, updatedProd, this.httpOptions);
   }
 
 }

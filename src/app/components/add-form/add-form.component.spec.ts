@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 
 import { AddFormComponent } from './add-form.component';
 
@@ -8,7 +10,9 @@ describe('AddFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddFormComponent ]
+      imports: [ RouterTestingModule ],
+      declarations: [ AddFormComponent ],
+      providers: [provideMockStore({})],
     })
     .compileComponents();
   });

@@ -15,40 +15,44 @@
   ],
   "items": [
     {
-      "id": 1,
-      "date": "2021-02-04",
-      "title": "Wok with lid",
       "image": "https://d2rbyiw1vv51io.cloudfront.net/web/ikea4/images/897/0789733_PE764109_S4.jpg",
-      "content": "19.99"
+      "title": "Wok with lids",
+      "content": "19.99",
+      "date": "2021-02-04",
+      "id": 1,
+      "quantity": 1
     },
     {
-      "title": "4 blue mugs",
+      "title": "4 blue mugs!",
       "image": "https://d2rbyiw1vv51io.cloudfront.net/web/ikea4/images/552/0455293_PH133702_S4.jpg",
       "content": "21.99",
       "date": "2021-02-04",
       "id": 2,
-      "type": "[Update Product] Submit Updated Product"
+      "quantity": 1
     },
     {
       "id": 3,
       "date": "2021-02-04",
       "title": "7-piece cookware set",
       "image": "https://www.ikea.com/gb/en/images/products/oumbaerlig-7-piece-cookware-set__0710410_PE727531_S5.JPG?f=s",
-      "content": "49.99"
+      "content": "49.99",
+      "quantity": 1
     },
     {
       "id": 4,
       "date": "2021-02-04",
       "title": "Grill pan",
       "image": "https://d2rbyiw1vv51io.cloudfront.net/web/ikea4/images/147/0714766_PE730242_S4.jpg",
-      "content": "23.99"
+      "content": "23.99",
+      "quantity": 1
     },
     {
       "title": "Some pan",
       "date": "2021-02-14",
       "image": "https://d2rbyiw1vv51io.cloudfront.net/web/ikea4/images/128/0712832_PE729095_S4.jpg",
       "content": "12.99",
-      "id": 5
+      "id": 5,
+      "quantity": 1
     },
     {
       "title": "Titles",
@@ -56,14 +60,23 @@
       "content": "15.99",
       "date": "2021-02-15",
       "id": 6,
-      "type": "[Update Product] Submit Updated Product"
+      "quantity": 1
     },
     {
       "title": "Title",
       "date": "2021-02-17",
       "image": "https://d2rbyiw1vv51io.cloudfront.net/web/ikea4/images/552/0455293_PH133702_S4.jpg",
       "content": "13.99",
-      "id": 7
+      "id": 7,
+      "quantity": 1
+    },
+    {
+      "title": "Title",
+      "date": "2021-02-17",
+      "image": "https://d2rbyiw1vv51io.cloudfront.net/web/ikea4/images/128/0712832_PE729095_S4.jpg",
+      "content": "Test",
+      "id": 8,
+      "quantity": 1
     }
   ]
 }

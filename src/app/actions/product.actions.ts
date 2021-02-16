@@ -59,7 +59,7 @@ export const UpdateProductSuccess = createAction(
 )
 
 export const UpdateProductError = createAction(
-    '[Update Product] Product Update Failed'
+    '[Update Product] Product Update Failed', props<{ error }>()
 )
 
 

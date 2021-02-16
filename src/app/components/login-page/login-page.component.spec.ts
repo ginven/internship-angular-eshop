@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { provideMockStore } from '@ngrx/store/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { LoginPageComponent } from './login-page.component';
 
@@ -8,7 +11,9 @@ describe('LoginPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginPageComponent ]
+      imports: [ FormsModule, ReactiveFormsModule, RouterTestingModule ],
+      declarations: [ LoginPageComponent ],
+      providers: [provideMockStore({})],
     })
     .compileComponents();
   });

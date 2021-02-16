@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { AuthService } from '../../state/auth.service';
-import { getUserState } from '../../_store';
-import * as UserActions from '../../actions/user.actions'
+import { AuthService } from '../../../auth/auth.service';
+import { getUserState } from '../../../_store';
+import * as UserActions from '../../../actions/user.actions'
 
 @Component({
   selector: 'app-header',
@@ -15,8 +15,7 @@ import * as UserActions from '../../actions/user.actions'
 export class HeaderComponent implements OnInit {
   getState: Observable<any>;
   isLoggedIn: false;
-  user = null;
-  errorMessage = null;
+
 
   // isLoggedIn = localStorage.getItem('isLoggedIn');
   constructor(public authService: AuthService, public router: Router, private store: Store) { 
@@ -26,8 +25,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.getState.subscribe((state) => {
       this.isLoggedIn = state.isLoggedIn;
-      this.user = state.user;
-      this.errorMessage = state.errorMessage;
     });
   }
   

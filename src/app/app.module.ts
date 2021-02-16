@@ -10,22 +10,22 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './common/header/header.component';
-import { FooterComponent } from './common/footer/footer.component';
-import { NavbarComponent } from './common/navbar/navbar.component';
-import { ContentComponent } from './content/content.component';
-import { CarouselComponent } from './common/carousel/carousel.component';
-import { SiteDescComponent } from './common/site-desc/site-desc.component';
-import { ProductsComponent } from './products/products.component';
-import { AddFormComponent } from './add-form/add-form.component';
-import { EditItemFormComponent } from './edit-item-form/edit-item-form.component';
+import { HeaderComponent } from './components/common/header/header.component';
+import { FooterComponent } from './components/common/footer/footer.component';
+import { NavbarComponent } from './components/common/navbar/navbar.component';
+import { ContentComponent } from './components/content/content.component';
+import { CarouselComponent } from './components/common/carousel/carousel.component';
+import { SiteDescComponent } from './components/common/site-desc/site-desc.component';
+import { ProductsComponent } from './components/products/products.component';
+import { AddFormComponent } from './components/add-form/add-form.component';
+import { EditItemFormComponent } from './components/edit-item-form/edit-item-form.component';
 
 import { environment } from 'src/environments/environment';
 import { appReducer } from './_store';
 import { ProductEffects } from './state/products.effects';
-import { UserEffects } from './state/auth.effects';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { LoginPageComponent } from './login-page/login-page.component';
+import { UserEffects } from './auth/auth.effects';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
 
 
 @NgModule({

@@ -8,10 +8,10 @@ import { Store, select } from '@ngrx/store';
 import { map, take } from 'rxjs/operators';
 import { FormGroupState } from 'ngrx-forms';
 
-import * as ProductActions from '../actions/product.actions';
-import { getProductList, getProduct, getForm } from '../state/product.selector';
-import { Products } from './../models/product';
-import { EditFormValue } from '../state/product.reducer';
+import * as ProductActions from '../../actions/product.actions';
+import { getProductList, getProduct, getForm } from '../../state/product.selector';
+import { Products } from '../../models/product';
+import { EditFormValue } from '../../state/product.reducer';
 
 @Component({
   selector: 'app-edit-item-form',
@@ -26,6 +26,7 @@ export class EditItemFormComponent implements OnInit {
     title: ['', [Validators.required, Validators.minLength(4)]],
     image: ['', [Validators.required, Validators.minLength(10)]],
     content: ['', [Validators.required, Validators.minLength(4)]],
+    quantity: [null, [Validators.min(0), Validators.max(99)]],
     date: ['', Validators.required]
   });
 

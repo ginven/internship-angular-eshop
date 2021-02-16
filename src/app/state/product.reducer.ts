@@ -1,6 +1,6 @@
-import { createReducer, on, props, Action } from '@ngrx/store';
-import { FormGroupState, createFormGroupState,  updateGroup, onNgrxForms, validate } from 'ngrx-forms';
-import { required } from 'ngrx-forms/validation';
+import { createReducer, on, props, Action, combineReducers } from '@ngrx/store';
+import { FormGroupState, createFormGroupState,  updateGroup, onNgrxForms, validate, formGroupReducer, formStateReducer } from 'ngrx-forms';
+import { required, greaterThanOrEqualTo, lessThan } from 'ngrx-forms/validation';
 
 import * as ProductActions from '../actions/product.actions';
 import * as UserActions from '../actions/user.actions';
@@ -11,6 +11,7 @@ export interface EditFormValue {
   title: string,
   date: string,
   image: string,
+  quantity: number,
   content: string
 }
 
@@ -19,15 +20,17 @@ const initialFormState = createFormGroupState<EditFormValue>('products_form', {
   title: '',
   date: '',
   image: '',
+  quantity: 0,
   content: ''
 });
 
-// const validateMyForm = updateGroup<EditFormValue>({
-//   title: validate(required),
-//   date: validate(required),
-//   image: validate(required),
-//   content: validate(required)
-// })
+const validateMyForm = updateGroup<EditFormValue>({
+  title: validate(required),
+  date: validate(required),
+  image: validate(required),
+  content: validate(required),
+  quantity: validate(greaterThanOrEqualTo(0), lessThan(99))
+})
 
 export interface ProductsState {
   editForm: FormGroupState<EditFormValue>,
@@ -42,21 +45,24 @@ const initialState: ProductsState = {
     "date": "2021-02-04",
     "title": "Wok with lid",
     "image": "https://d2rbyiw1vv51io.cloudfront.net/web/ikea4/images/897/0789733_PE764109_S4.jpg",
-    "content": "19.99"
+    "content": "19.99",
+    "quantity": 0
   },
   {
     "title": "4 blue mugs",
     "image": "https://d2rbyiw1vv51io.cloudfront.net/web/ikea4/images/552/0455293_PH133702_S4.jpg",
     "date": "2021-02-04",
     "content": "21.99",
-    "id": 2
+    "id": 2,
+    "quantity": 0
   },],
   product: {
     "id": 0,
     "date": "",
     "title": "",
     "image": "",
-    "content": ""
+    "content": "",
+    "quantity": 0
   }
 };
 
@@ -70,3 +76,4 @@ export const productsReducer = createReducer(
   onNgrxForms(),
   on(ProductActions.AddProduct, (state, { submittedValue }) => ({ ...state, submittedValue }))
 );
+

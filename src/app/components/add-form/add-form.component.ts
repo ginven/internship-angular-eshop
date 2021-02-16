@@ -6,10 +6,10 @@ import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
-import * as ProductActions from './../actions/product.actions';
-import { EditFormValue, ProductsState } from '../state/product.reducer';
-import { getForm } from '../state/product.selector';
-import { Products } from '../models/product';
+import * as ProductActions from '../../actions/product.actions';
+import { EditFormValue, ProductsState } from '../../state/product.reducer';
+import { getForm } from '../../state/product.selector';
+import { Products } from '../../models/product';
 
 
 
@@ -22,6 +22,7 @@ import { Products } from '../models/product';
 
 export class AddFormComponent {
  formState$: Observable<FormGroupState<EditFormValue>>;
+
 
 //  newTitle: string = '';
 //  newDate: string = '';

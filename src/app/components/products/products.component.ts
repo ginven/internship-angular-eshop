@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
-import { Products } from './../models/product';
+import { Products } from '../../models/product';
 
-import * as ProductActions from '../actions/product.actions';
-import { getProductList } from '../state/product.selector';
+import * as ProductActions from '../../actions/product.actions';
+import { getProductList } from '../../state/product.selector';
 
 
 @Component({

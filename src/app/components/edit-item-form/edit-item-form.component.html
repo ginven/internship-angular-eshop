@@ -21,6 +21,15 @@
                 </div>
             </div>
             <div class="form-group"> 
+                <label for="quantity">Quantity</label>
+                <input [(ngModel)]="product.quantity" type="number" formControlName="quantity"  class="form-control" placeholder="Quantity" name="quantity" id="quantity" required>
+                <div class="error-messages" *ngIf="updateForm.controls['quantity'].invalid && (updateForm.controls['quantity'].dirty || updateForm.controls['quantity'].touched)" >
+                    <div *ngIf="updateForm.controls['quantity'].errors.min || updateForm.controls['quantity'].errors.max" >
+                    Please enter only numbers between  0 and 99 
+                  </div>
+                </div>
+            </div>
+            <div class="form-group"> 
                 <label for="imageUrl">Image Url</label>
                 <input [(ngModel)]="product.image" type="text" formControlName="image"  class="form-control" placeholder="Image Url" name="image" id="imageUrl" required>
                 <div class="error-messages" *ngIf="updateForm.controls['image'].invalid && (updateForm.controls['image'].dirty || updateForm.controls['image'].touched)" >

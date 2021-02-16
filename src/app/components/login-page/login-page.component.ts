@@ -4,11 +4,11 @@ import { Store  } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { User } from '../models/user';
-import * as UserActions from '../actions/user.actions';
-import { getUserState } from '../_store';
-import { UserState } from '../auth/user.reducer';
-import { getUserStatus} from '../state/product.selector';
+import { User } from '../../models/user';
+import * as UserActions from '../../actions/user.actions';
+import { getUserState } from '../../_store';
+import { UserState } from '../../auth/user.reducer';
+import { getUserStatus} from '../../state/product.selector';
 
 @Component({
   selector: 'app-login-page',

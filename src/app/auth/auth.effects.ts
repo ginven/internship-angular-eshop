@@ -10,24 +10,15 @@ import * as UserActions from '../actions/user.actions';
 @Injectable()
 export class UserEffects {
  
-  loginUser$ = createEffect(() => this.actions$.pipe(
-    ofType(UserActions.LoginUser),
-    mergeMap((data) => this.authService.login(data.username, data.password)
-      .pipe(
-        map(user => UserActions.UserLoggedIn({ user: user })),
-        catchError(() => of(UserActions.UserLoginError()))
-      ))
-    )
-  );
-
-//   @Effect({ dispatch: false })
-//   LogInSuccess: Observable<any> = this.actions.pipe(
-//     ofType(AuthActionTypes.LOGIN_SUCCESS),
-//     tap((user) => {
-//       localStorage.setItem('token', user.payload.token);
-//       this.router.navigateByUrl('/');
-//     })
-//   );
+loginUser$ = createEffect(() => this.actions$.pipe(
+  ofType(UserActions.LoginUser),
+  mergeMap((data) => this.authService.login(data.username, data.password)
+    .pipe(
+      map(user => UserActions.UserLoggedIn({ user: user })),
+      catchError(() => of(UserActions.UserLoginError()))
+    ))
+  )
+);
 
 userLoggedIn$ = createEffect(() =>
 this.actions$.pipe(

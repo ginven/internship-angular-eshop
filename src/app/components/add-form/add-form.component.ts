@@ -24,12 +24,6 @@ export class AddFormComponent {
  formState$: Observable<FormGroupState<EditFormValue>>;
 
 
-//  newTitle: string = '';
-//  newDate: string = '';
-//  newImage: string = '';
-//  newContent: string = '';
-//  newProduct: {}
-
   constructor(
     private router: Router,
     private store: Store<ProductsState>) {

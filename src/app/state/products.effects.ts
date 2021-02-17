@@ -4,6 +4,7 @@ import { of } from 'rxjs';
 import { map, mergeMap, catchError, exhaustMap } from 'rxjs/operators';
 import { ProductsService } from './products.service';
 import * as ProductActions from '../actions/product.actions';
+import * as UserActions from '../actions/user.actions';
 
  
 @Injectable()
@@ -59,6 +60,18 @@ export class ProductEffects {
       ))
     )
   );
+
+  // getCart$ = createEffect(() => this.actions$.pipe(
+  //   ofType(UserActions.GetCart),
+  //   mergeMap(() => this.productsService.getProducts()
+  //     .pipe(
+  //       map(products => {
+  //         products.filter
+  //         UserActions.UserLoggedIn())},
+  //       catchError(() => of(UserActions.UserLoginError()))
+  //     ))
+  //   )
+  // );
  
   constructor(
     private actions$: Actions,

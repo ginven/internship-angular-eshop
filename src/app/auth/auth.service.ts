@@ -12,7 +12,7 @@ import { User } from '../models/user';
 })
 export class AuthService {
   user: Observable<User>;
-  // isLoggedIn: boolean = false;
+
   constructor(private http: HttpClient) { }
 
   private database = 'http://localhost:3000/users';

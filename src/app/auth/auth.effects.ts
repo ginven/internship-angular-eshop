@@ -2,9 +2,13 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { map, mergeMap, catchError, tap } from 'rxjs/operators';
+import { map, mergeMap, catchError, tap, withLatestFrom } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import * as UserActions from '../actions/user.actions';
+import { Store } from '@ngrx/store';
+
+import { getUserState } from '../_store'
+import { getCartProducts } from '../state/product.selector';
 
  
 @Injectable()
@@ -19,6 +23,7 @@ loginUser$ = createEffect(() => this.actions$.pipe(
     ))
   )
 );
+
 
 userLoggedIn$ = createEffect(() =>
 this.actions$.pipe(
@@ -43,6 +48,7 @@ ofType(UserActions.UserLogout),
   constructor(
     private actions$: Actions,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private store: Store
   ) {}
 }

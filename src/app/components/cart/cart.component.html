@@ -1,0 +1,21 @@
+<main class="main">
+<section class="main__h1">
+    <h1>CART</h1>
+    <section *ngIf="cartProducts.length < 1">
+        <p>There are no products in cart.</p>
+        <button class="btn btn-primary" routerLink="/">Back to Products</button>
+    </section>
+</section>
+<section class="main__products d-flex flex-row">
+    <article class="main__product" *ngFor="let item of cartProducts$ | async">
+         <figure>
+             <img class="product__image" src="{{item.product.image}}"
+                 alt="{{item.product.title}}">
+         </figure>
+         <h2>{{item.product.title}}</h2>
+         <p class="product__price">{{item.product.content}} €</p>
+         <span>Quantity: {{item.quantity}}</span>
+         <button class="btn btn-primary" (click)="removeFromCart(item.product.id)">Remove from Cart</button>
+    </article> 
+ </section>
+</main>

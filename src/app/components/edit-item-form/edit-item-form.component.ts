@@ -20,7 +20,7 @@ import { EditFormValue } from '../../state/product.reducer';
 })
 export class EditItemFormComponent implements OnInit {
   product$: Observable<Products>; 
-  formState$: Observable<FormGroupState<EditFormValue>> = this.store.select(getForm);
+  formState$: Observable<FormGroupState<EditFormValue>> 
   id: number = +this.route.snapshot.paramMap.get('id');
   updateForm = this.fb.group({
     title: ['', [Validators.required, Validators.minLength(4)]],
@@ -35,6 +35,7 @@ export class EditItemFormComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private store: Store) { 
+      this.formState$ = this.store.select(getForm);
     }
 
   ngOnInit(): void {

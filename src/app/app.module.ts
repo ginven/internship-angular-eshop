@@ -26,6 +26,7 @@ import { ProductEffects } from './state/products.effects';
 import { UserEffects } from './auth/auth.effects';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
+import { CartComponent } from './components/cart/cart.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { LoginPageComponent } from './components/login-page/login-page.component
     AddFormComponent,
     EditItemFormComponent,
     PageNotFoundComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

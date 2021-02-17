@@ -10,4 +10,5 @@ export const getProduct = createSelector(getProductsState, (state: productsReduc
 export const getForm = createSelector(getProductsState, (state: productsReducer.ProductsState) => state.editForm)
 
 export const getUserStatus = createSelector(getUserState, (state: userReducer.UserState) => state.user);
+export const getCartProducts = createSelector(getUserState, (state: userReducer.UserState) => state.cartProducts);
 // export const getLoginStatus = createSelector(getUserState, (state: userReducer.UserState) => state.user);

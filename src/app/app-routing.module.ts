@@ -7,12 +7,14 @@ import { AddFormComponent } from './components/add-form/add-form.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { LoginPageComponent } from './components/login-page/login-page.component'
 import { AuthGuard, RoleGuard } from './auth/auth.guard';
+import { CartComponent } from './components/cart/cart.component'
 
 const routes: Routes = [
   {path: '', component: ContentComponent},
   {path: 'edit-item/:id', canActivate: [AuthGuard, RoleGuard], component: EditItemFormComponent},
   {path: 'add-item', canActivate: [AuthGuard, RoleGuard], component: AddFormComponent},
   { path: 'login', component: LoginPageComponent },
+  { path: 'cart', component: CartComponent },
   { path: '**', canActivate: [AuthGuard], component: PageNotFoundComponent },
 ];
 

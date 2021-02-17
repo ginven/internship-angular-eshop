@@ -8,8 +8,13 @@
         <h2>{{product.title}}</h2>
         <p class="product__price">{{product.content}} €</p>
     </a>
+    <button (click)="addToCart(product)">Add to Cart</button>
    </article> 
 </section>
 <section class="main__new-item">
     <a class="btn btn-primary btn-lg"  routerLink="/add-item" role="button">Add new item</a>
 </section>
+<section class="main__new-item">
+    <a class="btn btn-primary btn-lg"  routerLink="/cart" role="button">Go to Cart</a>
+</section>
+

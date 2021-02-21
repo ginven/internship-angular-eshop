@@ -6,12 +6,12 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { map, take } from 'rxjs/operators';
-import { FormGroupState } from 'ngrx-forms';
+import { FormGroupState, SetValueAction, ResetAction } from 'ngrx-forms';
 
 import * as ProductActions from '../../actions/product.actions';
 import { getProductList, getProduct, getForm } from '../../state/product.selector';
 import { Products } from '../../models/product';
-import { EditFormValue } from '../../state/product.reducer';
+import { EditFormValue, initialState, productsFormKey } from '../../state/product.reducer';
 
 @Component({
   selector: 'app-edit-item-form',
@@ -22,13 +22,15 @@ export class EditItemFormComponent implements OnInit {
   product$: Observable<Products>; 
   formState$: Observable<FormGroupState<EditFormValue>> 
   id: number = +this.route.snapshot.paramMap.get('id');
-  updateForm = this.fb.group({
-    title: ['', [Validators.required, Validators.minLength(4)]],
-    image: ['', [Validators.required, Validators.minLength(10)]],
-    content: ['', [Validators.required, Validators.minLength(4)]],
-    quantity: [null, [Validators.min(0), Validators.max(99)]],
-    date: ['', Validators.required]
-  });
+  // updateForm = this.fb.group({
+  //   title: ['', [Validators.required, Validators.minLength(4)]],
+  //   image: ['', [Validators.required, Validators.minLength(10)]],
+  //   content: ['', [Validators.required, Validators.minLength(4)]],
+  //   quantity: [null, [Validators.min(0), Validators.max(99)]],
+  //   date: ['', Validators.required]
+  // });
+  displayAdd: boolean = true;
+  displayUpdate: boolean = false
 
   constructor(
     private router: Router,
@@ -41,23 +43,41 @@ export class EditItemFormComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(ProductActions.GetProduct({ productId: this.id }))
     this.product$ = this.store.select(getProduct)
+    if (this.id) {
+      this.displayAdd = false;
+      this.displayUpdate = true;
+    }
   }
 
-  deleteProduct(id:number): void {
+  deleteProduct(): void {
     if (!confirm('Are you sure you want to delete this item?')) {
       return
     }
-    this.store.dispatch(ProductActions.DeleteProduct({ productId: id }))
+    this.store.dispatch(ProductActions.DeleteProduct({ productId: this.id }))
     this.showMessage('<strong>Well done!</strong> You deleted product succesfully.', 'alert-success');
     setTimeout(() => this.router.navigate(['/']), 2000)
 
   }
 
   updateProduct(): void {
-    this.updateForm.value.id = this.id;
-    this.store.dispatch(ProductActions.UpdateProduct(this.updateForm.value));
+    this.store.dispatch(ProductActions.UpdateProduct())
+    // this.updateForm.value.id = this.id;
+    // this.store.dispatch(ProductActions.UpdateProduct(this.updateForm.value));
     this.showMessage('<strong>Well done!</strong> You updated product succesfully.', 'alert-success');
     setTimeout(() => this.router.navigate(['/']), 2000)
+  }
+
+  addProduct(): void {
+    this.store.dispatch(ProductActions.AddProduct())
+    // this.updateForm.value.id = this.id;
+    // this.store.dispatch(ProductActions.UpdateProduct(this.updateForm.value));
+    this.showMessage('<strong>Well done!</strong> You added product succesfully.', 'alert-success');
+    setTimeout(() => this.router.navigate(['/']), 2000)
+  }
+
+  cancel(): void {
+    this.store.dispatch(new SetValueAction(productsFormKey,initialState.editForm.value));
+    this.store.dispatch(new ResetAction(productsFormKey));
   }
 
   showMessage = (message: string, cssClass: string) => {

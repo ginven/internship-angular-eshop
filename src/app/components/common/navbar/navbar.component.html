@@ -4,13 +4,10 @@
             <a class="menu__link" href="/">Home</a>
         </li>
         <li class="menu__list">
-            <a class="menu__link" href="#">Frying pans</a>
+            <a class="menu__link" routerLink="/cart">Cart</a>
         </li>
-        <li class="menu__list">
-            <a class="menu__link" href="#">Glasses</a>
-        </li>
-        <li class="menu__list">
-            <a class="menu__link" href="#">Mugs & cups</a>
+        <li *ngIf="isAdmin" class="menu__list">
+            <a class="menu__link"  routerLink="/add-item">Add new item</a>
         </li>
     </ul>
 </nav>

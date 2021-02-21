@@ -11,8 +11,10 @@ import { CartComponent } from './components/cart/cart.component'
 
 const routes: Routes = [
   {path: '', component: ContentComponent},
-  {path: 'edit-item/:id', canActivate: [AuthGuard, RoleGuard], component: EditItemFormComponent},
-  {path: 'add-item', canActivate: [AuthGuard, RoleGuard], component: AddFormComponent},
+  // {path: 'edit-item/:id', canActivate: [AuthGuard, RoleGuard], component: EditItemFormComponent},
+  // {path: 'add-item', canActivate: [AuthGuard, RoleGuard], component: EditItemFormComponent},
+  {path: 'edit-item/:id', component: EditItemFormComponent},
+  {path: 'add-item', component: EditItemFormComponent},
   { path: 'login', component: LoginPageComponent },
   { path: 'cart', component: CartComponent },
   { path: '**', canActivate: [AuthGuard], component: PageNotFoundComponent },

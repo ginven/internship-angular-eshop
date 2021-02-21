@@ -7,6 +7,8 @@ import * as UserActions from '../actions/user.actions';
 import { Products } from '../models/product'
 
 
+export const productsFormKey = 'products_form';
+
 export interface EditFormValue {
   title: string,
   date: string,
@@ -16,7 +18,7 @@ export interface EditFormValue {
 }
 
 
-const initialFormState = createFormGroupState<EditFormValue>('products_form', {
+export const initialFormState = createFormGroupState<EditFormValue>('products_form', {
   title: '',
   date: '',
   image: '',
@@ -38,7 +40,7 @@ export interface ProductsState {
   product: Products
 }
 
-const initialState: ProductsState = {
+export const initialState: ProductsState = {
   editForm: initialFormState,
   products: [   {
     "id": 1,
@@ -74,6 +76,6 @@ export const productsReducer = createReducer(
   on(ProductActions.GetProduct, (state, props) => ({ ...state, product: state.product })), 
   on(ProductActions.LoadOneProduct, (state, props) => ({ ...state, product: props.product })), 
   onNgrxForms(),
-  on(ProductActions.AddProduct, (state, { submittedValue }) => ({ ...state, submittedValue }))
+  // on(ProductActions.AddProduct, (state, { submittedValue }) => ({ ...state, submittedValue }))
 );
 

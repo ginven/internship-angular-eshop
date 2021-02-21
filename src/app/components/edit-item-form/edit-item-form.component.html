@@ -80,8 +80,10 @@
                 <textarea [ngrxFormControlState]="formState.controls.content" class="form-control" rows="3" id="content" name="content" required></textarea>
             </div>
             <div class="actions">
-                <button [disabled]="formState.isInvalid" (click)="addProduct()" type="submit" id="add-item-btn" class="btn btn-primary btn-block">Submit</button>
-                <a class="btn btn-block" routerLink="/" role="button">Cancel</a>
+                <button [disabled]="formState.isInvalid" (click)="addProduct()" type="submit" id="add-item-btn" *ngIf="displayAdd" class="btn btn-primary btn-block">Add Product</button>
+                <button [disabled]="formState.isInvalid" (click)="updateProduct()" type="submit" id="add-item-btn" *ngIf="displayUpdate" class="btn btn-primary btn-block">Update Product</button>
+                <button type="button" class="btn btn-block btn-delete" *ngIf="displayUpdate" (click)="deleteProduct()">Delete this item</button>
+                <a class="btn btn-block" routerLink="/" (click)="cancel()" role="button">Cancel</a>
              </div>
         </form>
         <ul *ngIf="formState.isInvalid" class="error-messages">

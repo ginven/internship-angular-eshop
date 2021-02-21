@@ -16,19 +16,18 @@
   "items": [
     {
       "image": "https://d2rbyiw1vv51io.cloudfront.net/web/ikea4/images/897/0789733_PE764109_S4.jpg",
-      "title": "Wok with lids",
+      "title": "Wok with",
       "content": "19.99",
       "date": "2021-02-04",
-      "id": 1,
-      "quantity": 0
+      "quantity": 0,
+      "id": 1
     },
     {
-      "title": "4 blue mugs!",
       "image": "https://d2rbyiw1vv51io.cloudfront.net/web/ikea4/images/552/0455293_PH133702_S4.jpg",
+      "title": "4 blue mugs",
       "content": "21.99",
       "date": "2021-02-04",
-      "id": 2,
-      "quantity": 1
+      "id": 2
     },
     {
       "id": 3,

@@ -31,15 +31,15 @@ export class AddFormComponent {
    }
 
 
-  addProduct(){
-    this.formState$.pipe(
-      take(1),
-      map(fs => ProductActions.AddProduct({ submittedValue: fs.value })),
-    ).subscribe(this.store);
-    this.showMessage('<strong>Well done!</strong> You added product succesfully.', 'alert-success');
-    setTimeout(() => this.router.navigate(['/']), 2000);
-    // this.store.dispatch(ProductActions.AddProduct({ product }));
-  }
+  // addProduct(){
+  //   this.formState$.pipe(
+  //     take(1),
+  //     map(fs => ProductActions.AddProduct({ submittedValue: fs.value })),
+  //   ).subscribe(this.store);
+  //   this.showMessage('<strong>Well done!</strong> You added product succesfully.', 'alert-success');
+  //   setTimeout(() => this.router.navigate(['/']), 2000);
+  //   // this.store.dispatch(ProductActions.AddProduct({ product }));
+  // }
 
   showMessage = (message: string, cssClass: string) => {
     const htmlMessage = document.createElement('div');

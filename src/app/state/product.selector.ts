@@ -12,3 +12,5 @@ export const getForm = createSelector(getProductsState, (state: productsReducer.
 export const getUserStatus = createSelector(getUserState, (state: userReducer.UserState) => state.user);
 export const getCartProducts = createSelector(getUserState, (state: userReducer.UserState) => state.cartProducts);
 // export const getLoginStatus = createSelector(getUserState, (state: userReducer.UserState) => state.user);
+
+export const getSelectedProduct = (id: number) => createSelector(getProductsState, ((state: productsReducer.ProductsState) => state.products.filter(item => item.id === id)[0]));

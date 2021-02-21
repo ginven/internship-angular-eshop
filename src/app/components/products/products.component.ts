@@ -15,7 +15,6 @@ import { getProductList } from '../../state/product.selector';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-  // products$: Observable<Products[]> = this.store.select(state => state.products);
   products$: Observable<Products[]> 
   subscription: Subscription 
 
@@ -32,9 +31,10 @@ constructor(private store: Store) {
     this.subscription = this.products$.subscribe(items => {
       const item = items.filter(p => p === product)
        if(item[0].quantity < 1){
-          return console.log('There are no products left.')
-       } 
+          return this.showMessage('There are no products left', 'alert-danger')
+        } 
        this.store.dispatch(UserActions.AddToCart({product}))
+       this.showMessage('Item added to the cart', 'alert-success')
       }
     )
   }
@@ -48,10 +48,14 @@ constructor(private store: Store) {
           </div>  
       `
     userMessageSection.appendChild(htmlMessage);
+    setTimeout(() => userMessageSection.innerHTML = '', 2000);
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe()
+    if(this.subscription) {
+      this.subscription.unsubscribe()
+    }
+
   }
 
 }

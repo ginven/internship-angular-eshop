@@ -77,5 +77,4 @@ export interface UserState {
     on(UserActions.RemoveFromCart, (state, props) => ({
         ...state,
         cartProducts: state.cartProducts.filter(p => p.product.id !== props.productId)
-    })), 
-  );
+    })),  );

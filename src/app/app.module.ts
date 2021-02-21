@@ -7,6 +7,7 @@ import { NgrxFormsModule } from 'ngrx-forms';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { ReactiveFormsModule } from '@angular/forms';
+import { localStorageSync } from 'ngrx-store-localstorage';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';

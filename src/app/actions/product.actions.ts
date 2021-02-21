@@ -27,16 +27,19 @@ export const LoadProductError = createAction(
     '[Product Load] Product Load Failed'
 )
 
-export const AddProduct = createAction(
-    '[Add Product] Submit New Product', props<{submittedValue: EditFormValue}>()
-)
+// export const AddProduct = createAction(
+//     '[Add Product] Submit New Product', props<{submittedValue: EditFormValue}>()
+// )
+
+export const AddProduct = createAction('[Add Product] Submit New Product')
+    
 
 export const AddProductSuccess = createAction(
     '[Add Product] New Product Added'
 )
 
 export const AddProductError = createAction(
-    '[Add Product] Add New Product Failed'
+    '[Add Product] Add New Product Failed', props<{ error: 'string'}>()
 )
 
 export const DeleteProduct = createAction(
@@ -50,9 +53,13 @@ export const DeleteProductError = createAction(
     '[Delete Product] Delete Product Failed'
 )
 
+// export const UpdateProduct = createAction(
+//     '[Update Product] Submit Updated Product', props<{product: Products}>()
+// )
+
 export const UpdateProduct = createAction(
-    '[Update Product] Submit Updated Product', props<{product: Products}>()
-)
+    '[Update Product] Submit Updated Product')
+
 
 export const UpdateProductSuccess = createAction(
     '[Update Product] Product Updated'

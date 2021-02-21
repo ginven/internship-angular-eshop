@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { AuthService } from '../../../auth/auth.service';
 import { getUserState } from '../../../_store';
@@ -15,6 +15,7 @@ import * as UserActions from '../../../actions/user.actions'
 export class HeaderComponent implements OnInit {
   getState: Observable<any>;
   isLoggedIn: false;
+  subscription: Subscription
 
 
   // isLoggedIn = localStorage.getItem('isLoggedIn');
@@ -23,13 +24,19 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getState.subscribe((state) => {
+    this.subscription = this.getState.subscribe((state) => {
       this.isLoggedIn = state.isLoggedIn;
     });
   }
   
   logout(): void {
     this.store.dispatch(UserActions.UserLogout());
+  }
+
+  ngOnDestroy() {
+    if(this.subscription) {
+      this.subscription.unsubscribe()
+    }
   }
 
 }

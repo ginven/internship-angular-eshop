@@ -40,7 +40,7 @@ export class ProductsService {
   }
 
   updateProduct(product: any) {
-    const updatedProd = {image: product.image, title: product.title, content: product.content, date: product.date}
+    const updatedProd = {image: product.image, title: product.title, content: product.content, date: product.date, quantity: product.quantity}
     return this.http.put<Products>(this.database + '/' + product.id, updatedProd, this.httpOptions);
   }
 
